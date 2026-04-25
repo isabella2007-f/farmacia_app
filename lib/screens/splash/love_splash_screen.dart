@@ -55,7 +55,7 @@ class _LoveSplashScreenState extends State<LoveSplashScreen>
     // Controlador de fade principal
     _fadeController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1200),
+      duration: const Duration(milliseconds: 6000),
     );
     _fadeAnimation = CurvedAnimation(
       parent: _fadeController,
@@ -83,8 +83,8 @@ class _LoveSplashScreenState extends State<LoveSplashScreen>
     // Iniciar animación
     _fadeController.forward();
 
-    // Navegar después de 4 segundos
-    Future.delayed(const Duration(seconds: 4), () {
+    // Navegar después de 20 segundos para que el splash dure más tiempo
+    Future.delayed(const Duration(seconds: 20), () {
       if (mounted) _navigateToLogin();
     });
   }
