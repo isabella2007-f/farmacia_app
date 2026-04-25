@@ -76,6 +76,16 @@ class AuthProvider extends ChangeNotifier {
     await _authRepo.signOut();
   }
 
+  Future<bool> resetPassword(String email) async {
+    try {
+      await _authRepo.resetPassword(email);
+      return true;
+    } catch (e) {
+      _setError(e.toString());
+      return false;
+    }
+  }
+
   void _setLoading() {
     _status = AuthStatus.cargando;
     _errorMessage = null;

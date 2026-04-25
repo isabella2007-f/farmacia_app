@@ -8,11 +8,14 @@ plugins {
 android {
     namespace = "com.isabela.farmacia_app"
     compileSdk = flutter.compileSdkVersion
+
+    // ✅ FIX 1: NDK actualizado a la versión que requiere jni
     ndkVersion = "28.2.13676358"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        // ✅ FIX 2: Habilitar core library desugaring para flutter_local_notifications
         isCoreLibraryDesugaringEnabled = true
     }
 
@@ -36,8 +39,9 @@ android {
     }
 }
 
+// ✅ FIX 2: Dependencia requerida para desugaring
 dependencies {
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }
 
 flutter {

@@ -1,6 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Permisos requeridos -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
@@ -21,7 +20,6 @@
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
 
-            <!-- Tema normal después del splash -->
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme"/>
@@ -32,7 +30,7 @@
             </intent-filter>
         </activity>
 
-        <!-- ✅ LÍNEA CLAVE: embedding v2 -->
+        <!-- Embedding v2 - OBLIGATORIO -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2"/>

@@ -9,12 +9,13 @@ import 'core/constants/app_theme.dart';
 import 'core/constants/app_colors.dart';
 import 'providers/auth_provider.dart';
 import 'providers/medicamento_provider.dart';
+import 'providers/ajustes_provider.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/dashboard/dashboard_screen.dart';
+import 'screens/splash/love_splash_screen.dart';
 import 'services/notification_service.dart';
 
 void main() async {
-  // Asegura que Flutter esté inicializado
   WidgetsFlutterBinding.ensureInitialized();
 
   // Inicializar Firebase
@@ -22,19 +23,27 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // Inicializar servicio de notificaciones
-  await NotificationService().initialize();
+  // Notificaciones con manejo de error para no crashear
+  try {
+    await NotificationService().initialize();
+  } catch (e) {
+    debugPrint('Error NotificationService: $e');
+  }
 
-  // Inicializar locale en español para fechas
-  await initializeDateFormatting('es', null);
+  // Locale español para fechas
+  try {
+    await initializeDateFormatting('es', null);
+  } catch (e) {
+    debugPrint('Error locale: $e');
+  }
 
-  // Orientación solo vertical
+  // Solo orientación vertical
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
 
-  // Color de la barra de estado
+  // Barra de estado transparente
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -54,6 +63,9 @@ class FarmaciaApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => MedicamentoProvider()),
+        ChangeNotifierProvider(
+          create: (_) => AjustesProvider()..cargarPreferencias(),
+        ),
       ],
       child: MaterialApp(
         title: 'Farmacia App',
@@ -65,7 +77,6 @@ class FarmaciaApp extends StatelessWidget {
   }
 }
 
-// Decide qué pantalla mostrar según si el usuario está autenticado
 class _AuthWrapper extends StatelessWidget {
   const _AuthWrapper();
 
@@ -75,27 +86,7 @@ class _AuthWrapper extends StatelessWidget {
 
     switch (auth.status) {
       case AuthStatus.inicial:
-        // Pantalla de carga mientras Firebase verifica la sesión
-        return const Scaffold(
-          backgroundColor: AppColors.background,
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.medication_outlined,
-                  size: 64,
-                  color: AppColors.primary,
-                ),
-                SizedBox(height: 24),
-                CircularProgressIndicator(
-                  color: AppColors.primary,
-                  strokeWidth: 2,
-                ),
-              ],
-            ),
-          ),
-        );
+        return const LoveSplashScreen();
 
       case AuthStatus.autenticado:
         return const DashboardScreen();

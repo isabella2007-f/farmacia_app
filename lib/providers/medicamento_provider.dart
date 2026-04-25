@@ -29,6 +29,10 @@ class MedicamentoProvider extends ChangeNotifier {
   Stream<List<MedicamentoModel>> get stockBajoStream =>
       _repo.getMedicamentosStockBajoStream();
 
+  Stream<List<MedicamentoModel>> medicamentosStockBajoStream({
+    int umbral = 10,
+  }) => _repo.getMedicamentosStockBajoStream(umbral: umbral);
+
   // ─── CRUD ─────────────────────────────────────────────────
 
   /// Crea un nuevo medicamento calculando la fecha de alerta automáticamente

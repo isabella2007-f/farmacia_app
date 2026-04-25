@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/medicamento_provider.dart';
+import '../../providers/ajustes_provider.dart';
 import '../../models/medicamento_model.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/widgets/estado_badge.dart';
 import '../medicamentos/agregar_medicamento_screen.dart';
 import '../medicamentos/lista_medicamentos_screen.dart';
 import '../laboratorios/laboratorios_screen.dart';
+import '../ajustes/ajustes_screen.dart';
 import 'package:intl/intl.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -24,6 +26,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     const _HomeTab(),
     const ListaMedicamentosScreen(),
     const LaboratoriosScreen(),
+    const AjustesScreen(),
   ];
 
   @override
@@ -52,6 +55,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
               icon: Icon(Icons.business_outlined),
               activeIcon: Icon(Icons.business),
               label: 'Laboratorios',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings_outlined),
+              activeIcon: Icon(Icons.settings),
+              label: 'Ajustes',
             ),
           ],
         ),
@@ -153,7 +161,9 @@ class _HomeTab extends StatelessWidget {
                         const SizedBox(width: 12),
                         Expanded(
                           child: StreamBuilder<List<MedicamentoModel>>(
-                            stream: medProvider.stockBajoStream,
+                            stream: medProvider.medicamentosStockBajoStream(
+                              umbral: context.watch<AjustesProvider>().umbralStock,
+                            ),
                             builder: (_, snap) => _StatCard(
                               title: 'Stock bajo',
                               count: snap.data?.length ?? 0,
