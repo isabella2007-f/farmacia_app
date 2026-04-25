@@ -1,0 +1,39 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "farmacia-medicamentos",
+          "appId": "1:210083348003:android:03db8eed7f0f3f87787b96",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "farmacia-medicamentos",
+          "configurations": {
+            "android": "1:210083348003:android:03db8eed7f0f3f87787b96",
+            "ios": "1:210083348003:ios:e37e59434a274190787b96",
+            "macos": "1:210083348003:ios:e37e59434a274190787b96",
+            "web": "1:210083348003:web:f68c40cfdd132bd2787b96",
+            "windows": "1:210083348003:web:c8412e9deded3adb787b96"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "disallowLegacyRuntimeConfig": true,
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ]
+    }
+  ]
+}

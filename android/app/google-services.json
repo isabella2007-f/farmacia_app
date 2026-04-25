@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "210083348003",
+    "project_id": "farmacia-medicamentos",
+    "storage_bucket": "farmacia-medicamentos.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210083348003:android:03db8eed7f0f3f87787b96",
+        "android_client_info": {
+          "package_name": "com.example.farmacia_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeHtyO0dLwtuHQ1nZ1WmP2jXbr3HLN42k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210083348003:android:f346a3d76371dbdd787b96",
+        "android_client_info": {
+          "package_name": "com.isabela.farmacia_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeHtyO0dLwtuHQ1nZ1WmP2jXbr3HLN42k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
